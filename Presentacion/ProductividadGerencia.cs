@@ -811,7 +811,7 @@ namespace Presentacion.ProductividadGerencia
                         archiDuo = @"\\sbmdebns03\VP SERV CORP\VP_SERV_CLIE\DIR_SERV_MERC_CAP_CCIO_INT\GCIA_SERV_COM_INT\Operación\Envio y recepción\Productividad\" + "Compraventa" + CompletaAyerFindeSemana + ".txt";
                         archiTris = @"\\sbmdebns03\VP SERV CORP\VP_SERV_CLIE\DIR_SERV_MERC_CAP_CCIO_INT\GCIA_SERV_COM_INT\Operación\Envio y recepción\Productividad\" + "Trade" + CompletaAyerFindeSemana + ".txt";
 
-                        if (File.Exists(archi) && File.Exists(archi) && File.Exists(archi))
+                        if (File.Exists(archi) && File.Exists(archiDuo) && File.Exists(archiTris))
                         {
                             File.Delete(archi);
                             File.Delete(archiDuo);
@@ -832,7 +832,7 @@ namespace Presentacion.ProductividadGerencia
                         archiDuo = @"\\sbmdebns03\VP SERV CORP\VP_SERV_CLIE\DIR_SERV_MERC_CAP_CCIO_INT\GCIA_SERV_COM_INT\Operación\Envio y recepción\Productividad\" + "Compraventa" + CompletaAyerSemana + ".txt";
                         archiTris = @"\\sbmdebns03\VP SERV CORP\VP_SERV_CLIE\DIR_SERV_MERC_CAP_CCIO_INT\GCIA_SERV_COM_INT\Operación\Envio y recepción\Productividad\" + "Trade" + CompletaAyerSemana + ".txt";
 
-                        if (File.Exists(archi) && File.Exists(archi) && File.Exists(archi))
+                        if (File.Exists(archi) && File.Exists(archiDuo) && File.Exists(archiTris))
                         {
                             File.Delete(archi);
                             File.Delete(archiDuo);
@@ -851,6 +851,18 @@ namespace Presentacion.ProductividadGerencia
                     string archivoDuo = @"\\sbmdebns03\VP SERV CORP\VP_SERV_CLIE\DIR_SERV_MERC_CAP_CCIO_INT\GCIA_SERV_COM_INT\Operación\Envio y recepción\Productividad\" + "Compraventa" + Completa + ".txt";
                     string archivoTris = @"\\sbmdebns03\VP SERV CORP\VP_SERV_CLIE\DIR_SERV_MERC_CAP_CCIO_INT\GCIA_SERV_COM_INT\Operación\Envio y recepción\Productividad\" + "Trade" + Completa + ".txt";
 
+                    if (File.Exists(archivo) && File.Exists(archivoDuo) && File.Exists(archivoTris))
+                    {
+                        app.EnEjecucion = false;
+                        bandera = false;
+                        banderaSecundaria = false;
+                    }
+                    else
+                    {
+                        bandera = true;
+                        banderaSecundaria = true;
+
+                    }
 
 
                     while (bandera == true && banderaSecundaria == true)
@@ -1134,7 +1146,7 @@ namespace Presentacion.ProductividadGerencia
 
                         }
 
-                        else if (gerencia.Contains("Compraventa") && ok.ElementAt(1).Equals(0) && lineaDuo==0 && !File.Exists(archivoDuo))
+                        else if (gerencia.Contains("Compraventa") && ok.ElementAt(1).Equals(0) && lineaDuo==1 && !File.Exists(archivoDuo))
                         {
                             // Inicialización de la primera instancia de Excel Application
                             Excel.Application myexcelApplication = new Excel.Application();
